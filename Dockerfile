@@ -1,5 +1,6 @@
 FROM ruby:alpine
-RUN gem install t && \
+RUN apk add --update make && \
+	gem install t && \
 	mkdir -p "/app/twidiff/results" \
 	cd "/app/twidiff/" \
 	wget https://raw.githubusercontent.com/ryanseys/twidiff/master/twidiff.sh && \
