@@ -10,7 +10,7 @@ RUN apk add --update build-base make git && \
 
 USER twidiff
 
-RUN git config --global user.email "me@localhost" \
+RUN git config --global user.email "me@localhost" && \
 	git config --global user.name "My humble self"
 
 WORKDIR /app/twidiff
