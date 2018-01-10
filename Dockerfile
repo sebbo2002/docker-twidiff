@@ -1,12 +1,13 @@
 FROM ruby:alpine
 RUN apk add --update build-base make git && \
 	gem install t && \
-	mkdir -p "/app/twidiff/results" \
-	cd "/app/twidiff/" \
+	mkdir -p "/app/twidiff/results" && \
+	cd "/app/twidiff/" && \
 	wget "https://raw.githubusercontent.com/ryanseys/twidiff/master/twidiff.sh" && \
 	chmod +x "./twidiff.sh" && \
 	adduser -SD "twidiff" && \
-	chown -R twidiff:nogroup "./results"
+	chown -R twidiff:nogroup "./results" && \
+	ls -lah
 
 USER twidiff
 
