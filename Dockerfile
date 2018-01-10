@@ -5,7 +5,7 @@ RUN apk add --update build-base make && \
 	cd "/app/twidiff/" \
 	wget "https://raw.githubusercontent.com/ryanseys/twidiff/master/twidiff.sh" "/app/twidiff/twidiff.sh" && \
 	chmod +x "/app/twidiff/twidiff.sh" && \
-	adduser --disabled-password "twidiff" && \
+	adduser -SD "twidiff" && \
 	chown -R twidiff:nogroup "/app/twidiff/results"
 
 USER twidiff
