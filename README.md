@@ -8,5 +8,8 @@ Just a very simple docker container for [twidiff.sh](https://github.com/ryanseys
 ### Usage
 
 ```bash
-docker run -v /my/results:/app/twidiff/results -v /my/config.yml:/home/twidiff/.trc sebbo2002/twidiff
+docker run --rm \
+	-v /my/results:/app/twidiff/results \
+	-v /my/config.yml:/home/twidiff/.trc \
+	sebbo2002/twidiff
 ```
