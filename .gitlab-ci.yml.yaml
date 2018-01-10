@@ -1,0 +1,43 @@
+stages:
+  - build
+  - deploy
+
+build_image:
+  stage: build
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN docker.sebbo.net
+    - docker build -t docker.sebbo.net/docker/twidiff .
+    - docker push docker.sebbo.net/docker/twidiff
+  only:
+    - master
+
+publish_github:
+  stage: build
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - git push "https://${GITHUB_AUTH}@github.com/sebbo2002/docker-twidiff.git" --all
+    - git push "https://${GITHUB_AUTH}@github.com/sebbo2002/docker-twidiff.git" --tags
+
+deployment:
+  stage: deploy
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - docker login -u "gitlab-ci-token" -p "${CI_BUILD_TOKEN}" docker.sebbo.net
+    - docker pull docker.sebbo.net/docker/twidiff
+
+trigger_dockerhub:
+  stage: deploy
+  tags:
+    - matt.sebbo.net
+    - ssh
+  script:
+    - curl -X "POST" "https://registry.hub.docker.com/u/sebbo2002/twidiff/trigger/471b7c9e-c02e-4104-ba64-6009983d5a6d/"
+  only:
+    - master
