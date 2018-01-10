@@ -1,11 +1,12 @@
-FROM ruby:alpine
-RUN apk add --update build-base make git && \
+FROM ruby
+RUN apt-get install git && \
+	apt-get clean && \
 	gem install t && \
 	mkdir -p "/app/twidiff/results" && \
 	cd "/app/twidiff/" && \
 	wget "https://raw.githubusercontent.com/ryanseys/twidiff/master/twidiff.sh" && \
 	chmod +x "./twidiff.sh" && \
-	adduser -SD "twidiff" && \
+	adduser --system --disabled-password "twidiff" && \
 	chown -R twidiff:nogroup "./results" && \
 	ls -lah
 
