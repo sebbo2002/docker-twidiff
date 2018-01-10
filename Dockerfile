@@ -1,5 +1,5 @@
 FROM ruby:alpine
-RUN apk add --update make && \
+RUN apk add --update build-base make && \
 	gem install t && \
 	mkdir -p "/app/twidiff/results" \
 	cd "/app/twidiff/" \
