@@ -3,7 +3,7 @@ RUN apk add --update build-base make git && \
 	gem install t && \
 	mkdir -p "/app/twidiff/results" \
 	cd "/app/twidiff/" \
-	wget "https://raw.githubusercontent.com/ryanseys/twidiff/master/twidiff.sh" "/app/twidiff/twidiff.sh" && \
+	wget "https://raw.githubusercontent.com/ryanseys/twidiff/master/twidiff.sh" "/app/twidiff/" && \
 	chmod +x "/app/twidiff/twidiff.sh" && \
 	adduser -SD "twidiff" && \
 	chown -R twidiff:nogroup "/app/twidiff/results"
